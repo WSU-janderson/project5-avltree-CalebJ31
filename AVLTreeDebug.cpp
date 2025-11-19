@@ -12,12 +12,15 @@ using namespace std;
 
 
 int main() {
-    // AVLTree tree;
-    // bool insertResult;
-    // insertResult = tree.insert("F", 'F');
-    // insertResult = tree.insert("F", 'F'); // false, no duplicates allowed
-    // insertResult = tree.insert("K", 'K');
-    // insertResult = tree.insert("X", 'X');// single rotate left
+     AVLTree tree;
+     bool insertResult;
+     insertResult = tree.insert("F", 'F');
+    cout << insertResult << endl;
+     insertResult = tree.insert("F", 'F'); // false, no duplicates allowed
+ cout << insertResult << endl;
+     insertResult = tree.insert("K", 'K');
+    cout << insertResult << endl;
+     //insertResult = tree.insert("X", 'X');// single rotate left
     // cout << endl << endl;
     // cout << tree << endl;
     //

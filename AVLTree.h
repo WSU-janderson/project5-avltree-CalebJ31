@@ -48,6 +48,8 @@ public:
     void operator=(const AVLTree& other);
     ~AVLTree();
 
+    AVLTree();
+
     friend std::ostream& operator<<(ostream& os, const AVLTree & avlTree);
 
 
@@ -65,7 +67,7 @@ public:
     void balanceNode(AVLNode*& node);
 
     bool searchRecursive(string& key, AVLNode* current);
-    bool insertRecursive (AVLNode*& current, string& key, size_t& value);
+    bool insertRecursive (AVLNode*& current, const string& key, size_t value);
 };
 
 #endif //AVLTREE_H
