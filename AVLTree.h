@@ -16,7 +16,7 @@ public:
     using ValueType = size_t;
 
 protected:
-    class AVLNode {
+   class AVLNode {
     public:
         KeyType key;
         ValueType value;
@@ -64,6 +64,8 @@ public:
     // You will implement this, but it is needed for removeNode()
     void balanceNode(AVLNode*& node);
 
+    bool searchRecursive(string& key, AVLNode* current);
+    bool insertRecursive (AVLNode*& current, string& key, size_t& value);
 };
 
 #endif //AVLTREE_H

@@ -2,7 +2,16 @@
 
 #include <string>
 
-bool AVLTree::insert(const std::string& key, size_t value){}
+bool AVLTree::insert(const std::string& key, size_t value) {
+    // if sucessful return true, otherwise return false
+    if (root == nullptr) {
+
+        return true;
+    }else {
+
+        return false;
+    }
+}
 bool AVLTree::remove(const std::string& key){}
 bool AVLTree::contains(const std::string& key) const{}
 std::optional<size_t> AVLTree::get(const std::string& key) const {}
@@ -83,4 +92,45 @@ bool AVLTree::remove(AVLNode *&current, KeyType key) {
 }
 
 void AVLTree::balanceNode(AVLNode *&node) {
+}
+
+bool AVLTree::searchRecursive(string& key, AVLNode* current ){
+    //base case
+    if (current == nullptr) return false;
+
+    //exit case
+    else if (key == current->key) return true;
+
+    //traversing tree, go left then call
+    if (key < current-> key) {
+            return searchRecursive(key, current->left);
+
+    }
+    //go right then call
+    if (key > current->key) {
+        return searchRecursive(key, current->right);
+    }
+}
+
+bool AVLTree::insertRecursive (AVLNode*& current, string& key, size_t& value) {
+    // Base case. If node not found in tree insert it
+    if (current == nullptr) {
+       current = new AVLNode(key, value);
+        return true;
+    }
+
+    //If key is in tree returns false
+    if (key == current -> key) {
+        return false;
+    }
+
+    // Go left. Traversing tree
+    if (key < current ->key) {
+        insertRecursive(current->left, key, value);
+    }
+
+    // Go Right
+    if (key > current ->key) {
+        insertRecursive(current->right, key, value);
+    }
 }
