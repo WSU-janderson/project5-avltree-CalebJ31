@@ -6,7 +6,9 @@ bool AVLTree::insert(const std::string& key, size_t value) {
     return insertRecursive(root, key, value);
 }
 bool AVLTree::remove(const std::string& key){}
-bool AVLTree::contains(const std::string& key) const{}
+bool AVLTree::contains(const std::string& key) const {
+    return searchRecursive(key, root);
+}
 std::optional<size_t> AVLTree::get(const std::string& key) const {}
 size_t& AVLTree::operator[](const std::string& key){}
 vector<std::string> AVLTree::findRange( const std::string& lowKey, const std::string& highKey) const{}
@@ -90,7 +92,7 @@ bool AVLTree::remove(AVLNode *&current, KeyType key) {
 void AVLTree::balanceNode(AVLNode *&node) {
 }
 
-bool AVLTree::searchRecursive(string& key, AVLNode* current ){
+bool AVLTree::searchRecursive(const string& key, AVLNode* current ) const{
     //base case
     if (current == nullptr) return false;
 

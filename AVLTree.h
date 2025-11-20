@@ -66,7 +66,7 @@ public:
     // You will implement this, but it is needed for removeNode()
     void balanceNode(AVLNode*& node);
 
-    bool searchRecursive(string& key, AVLNode* current);
+    bool searchRecursive(const string& key, AVLNode* current) const;
     bool insertRecursive (AVLNode*& current, const string& key, size_t value);
 };
 

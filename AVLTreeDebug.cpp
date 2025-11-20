@@ -20,6 +20,13 @@ int main() {
  cout << insertResult << endl;
      insertResult = tree.insert("K", 'K');
     cout << insertResult << endl;
+ // contains
+         bool containsResult;
+    containsResult = tree.contains("F"); // true
+ cout << containsResult << endl;
+    containsResult = tree.contains("Z"); // false
+ cout << containsResult << endl;
+
      //insertResult = tree.insert("X", 'X');// single rotate left
     // cout << endl << endl;
     // cout << tree << endl;
