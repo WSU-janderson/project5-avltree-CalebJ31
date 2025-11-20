@@ -2,10 +2,13 @@
 
 #include <string>
 
+//
 bool AVLTree::insert(const std::string& key, size_t value) {
     return insertRecursive(root, key, value);
 }
 bool AVLTree::remove(const std::string& key){}
+
+//can just return the result of searchRecursive since it is a bool as well.
 bool AVLTree::contains(const std::string& key) const {
     return searchRecursive(key, root);
 }
@@ -13,12 +16,14 @@ std::optional<size_t> AVLTree::get(const std::string& key) const {}
 size_t& AVLTree::operator[](const std::string& key){}
 vector<std::string> AVLTree::findRange( const std::string& lowKey, const std::string& highKey) const{}
 std::vector<std::string> AVLTree::keys() const{}
-size_t AVLTree::size() const{}
+size_t AVLTree::size() const {
+    return treeSz;
+}
 size_t AVLTree::getHeight() const{}
 AVLTree::AVLTree(const AVLTree& other){}
 void AVLTree::operator=(const AVLTree& other){}
 AVLTree::~AVLTree() {}
-AVLTree::AVLTree(): root(nullptr) {}
+AVLTree::AVLTree(): root(nullptr), treeSz(0) {}
 
  std::ostream& operator<<(ostream& os, const AVLTree & avlTree) {
     return os;
@@ -114,6 +119,7 @@ bool AVLTree::insertRecursive (AVLNode*& current, const string& key, size_t valu
     // Base case. If node not found in tree insert it
     if (current == nullptr) {
        current = new AVLNode(key, value);
+        treeSz++;// Want to add to the size of the tree when we insert a node
         return true;
     }
 

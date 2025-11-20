@@ -17,15 +17,16 @@ int main() {
      insertResult = tree.insert("F", 'F');
     cout << insertResult << endl;
      insertResult = tree.insert("F", 'F'); // false, no duplicates allowed
- cout << insertResult << endl;
-     insertResult = tree.insert("K", 'K');
     cout << insertResult << endl;
+    // insertResult = tree.insert("K", 'K');
+    //cout << insertResult << endl;
  // contains
          bool containsResult;
     containsResult = tree.contains("F"); // true
  cout << containsResult << endl;
-    containsResult = tree.contains("Z"); // false
- cout << containsResult << endl;
+   // containsResult = tree.contains("Z"); // false
+ //cout << containsResult << endl;
+    cout<< tree.size()<< endl;
 
      //insertResult = tree.insert("X", 'X');// single rotate left
     // cout << endl << endl;
