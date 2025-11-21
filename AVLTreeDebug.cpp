@@ -14,7 +14,7 @@ using namespace std;
 int main() {
      AVLTree tree;
      bool insertResult;
-     insertResult = tree.insert("F", 'F');
+     insertResult = tree.insert("F", 'L');
     cout << insertResult << endl;
      insertResult = tree.insert("F", 'F'); // false, no duplicates allowed
     cout << insertResult << endl;
@@ -27,6 +27,12 @@ int main() {
    // containsResult = tree.contains("Z"); // false
  //cout << containsResult << endl;
     cout<< tree.size()<< endl;
+ //get
+    optional<int> getResult;
+//
+   getResult = tree.get("F"); // 65
+    cout << "F: " << getResult.value() << endl;
+//
 
      //insertResult = tree.insert("X", 'X');// single rotate left
     // cout << endl << endl;
