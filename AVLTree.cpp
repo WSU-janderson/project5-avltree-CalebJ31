@@ -17,7 +17,12 @@ std::optional<size_t> AVLTree::get(const std::string& key) const {
 }
 size_t& AVLTree::operator[](const std::string& key){}
 vector<std::string> AVLTree::findRange( const std::string& lowKey, const std::string& highKey) const{}
-std::vector<std::string> AVLTree::keys() const{}
+
+std::vector<std::string> AVLTree::keys() const {
+    std::vector<string> result;
+    keysRecursive(root, result);
+    return result;
+}
 size_t AVLTree::size() const {
     return treeSz;
 }
@@ -162,3 +167,17 @@ std::optional<size_t> AVLTree::getRecursive(const string& key, AVLNode* current)
         return getRecursive(key, current->right);
     }
 }
+
+void AVLTree::keysRecursive(AVLNode* current, std::vector<string>& result) const {
+
+    //base case
+    if (current == nullptr) {
+        return;
+    }
+
+    //inorder traversal
+    keysRecursive(current->left, result);
+    result.push_back(current->key);
+    keysRecursive(current->right, result);
+}
+

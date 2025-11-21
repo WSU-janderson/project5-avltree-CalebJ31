@@ -18,6 +18,11 @@ int main() {
     cout << insertResult << endl;
      insertResult = tree.insert("F", 'F'); // false, no duplicates allowed
     cout << insertResult << endl;
+ insertResult = tree.insert("B", 'D'); // false, no duplicates allowed
+    insertResult = tree.insert("T", 'F'); // false, no duplicates allowed
+    insertResult = tree.insert("z", 'F'); // false, no duplicates allowed
+
+
     // insertResult = tree.insert("K", 'K');
     //cout << insertResult << endl;
  // contains
@@ -33,6 +38,11 @@ int main() {
    getResult = tree.get("F"); // 65
     cout << "F: " << getResult.value() << endl;
 //
+
+ std::vector<std::string> keysInTree = tree.keys();
+for (const auto& key : keysInTree) {
+        std::cout << key << endl;
+    }
 
      //insertResult = tree.insert("X", 'X');// single rotate left
     // cout << endl << endl;

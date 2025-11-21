@@ -70,6 +70,7 @@ public:
     bool searchRecursive(const string& key, AVLNode* current) const;
     bool insertRecursive (AVLNode*& current, const string& key, size_t value);
     std::optional<size_t> getRecursive(const string& key, AVLNode* current) const;
+    void keysRecursive(AVLNode* current, std::vector<string>& result) const;
 };
 
 #endif //AVLTREE_H
