@@ -15,11 +15,18 @@ int main() {
      AVLTree tree;
      bool insertResult;
      insertResult = tree.insert("F", 'L');
+    insertResult = tree.insert("B", 'L');
+    insertResult = tree.insert("A", 'L');
+
+
     cout << tree["F"] << endl;
 
     AVLTree treeCopy(tree);
     cout << treeCopy.size() << endl;
     cout << tree.size() << endl;
+
+    AVLTree tree1 = tree;
+    cout << tree1.size() << endl;
 
     cout << insertResult << endl;
      insertResult = tree.insert("F", 'F'); // false, no duplicates allowed
