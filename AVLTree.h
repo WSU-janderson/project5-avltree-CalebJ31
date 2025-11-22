@@ -72,6 +72,7 @@ public:
     std::optional<size_t> getRecursive(const string& key, AVLNode* current) const;
     void keysRecursive(AVLNode* current, std::vector<string>& result) const;
     size_t& operatorBracketRecursive(const string& key, AVLNode* current);
+    AVLNode* copyConRecursive(AVLNode* node);
 };
 
 #endif //AVLTREE_H

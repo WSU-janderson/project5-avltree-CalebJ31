@@ -16,6 +16,11 @@ int main() {
      bool insertResult;
      insertResult = tree.insert("F", 'L');
     cout << tree["F"] << endl;
+
+    AVLTree treeCopy(tree);
+    cout << treeCopy.size() << endl;
+    cout << tree.size() << endl;
+
     cout << insertResult << endl;
      insertResult = tree.insert("F", 'F'); // false, no duplicates allowed
     cout << insertResult << endl;

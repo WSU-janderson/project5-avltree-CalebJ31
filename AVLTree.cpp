@@ -31,7 +31,14 @@ size_t AVLTree::size() const {
     return treeSz;
 }
 size_t AVLTree::getHeight() const{}
-AVLTree::AVLTree(const AVLTree& other){}
+AVLTree::AVLTree(const AVLTree& other) {
+    root = nullptr;
+    treeSz = 0;
+
+    root = copyConRecursive(other.root);
+    treeSz = other.treeSz;
+
+}
 void AVLTree::operator=(const AVLTree& other){}
 AVLTree::~AVLTree() {}
 AVLTree::AVLTree(): root(nullptr), treeSz(0) {}
@@ -188,7 +195,7 @@ void AVLTree::keysRecursive(AVLNode* current, std::vector<string>& result) const
 
 size_t& AVLTree::operatorBracketRecursive(const string& key, AVLNode* current) {
 
-    
+
     //If the key is found return the value of the key
     if (key == current->key) {
         return current->value;
@@ -204,5 +211,23 @@ size_t& AVLTree::operatorBracketRecursive(const string& key, AVLNode* current) {
         return operatorBracketRecursive(key, current->right);
     }
 }
+
+AVLTree::AVLNode* AVLTree::copyConRecursive(AVLNode* node) {
+
+    //base case
+    if (node == nullptr) {
+        return nullptr;
+    }
+
+    // New node created
+    AVLNode* newNode = new AVLNode(node->key, node->value);
+
+    // Use recursion to copy the tree
+    newNode->left = copyConRecursive(node->left);
+    newNode->right = copyConRecursive(node->right);
+
+    return newNode;
+}
+
 
 
