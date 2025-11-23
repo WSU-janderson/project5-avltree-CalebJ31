@@ -2,37 +2,104 @@
 
 #include <string>
 
+//----------------------------------------------------------------
+// Caleb Wilson
+//    AVLTree Project 5
 //
+//      Project Description : Making a AVL TRee acting as a map
+//          that stores key-value pairs. We are able to perform
+//          operations on tree as well.
+//----------------------------------------------------------------
+
+//----------------------------------------------------------------
+// insert: inserts a key-value pair into the AVL tree
+//    Returns:  true if insertion successful, false if key already exists
+//    Parameters:
+//       key (const std::string&) - the key to insert
+//       value (size_t) - the value associated with the key
+//----------------------------------------------------------------
 bool AVLTree::insert(const std::string& key, size_t value) {
     return insertRecursive(root, key, value);
 }
-bool AVLTree::remove(const std::string& key) {
 
+
+bool AVLTree::remove(const std::string& key) {
 }
 
+//----------------------------------------------------------------
+// contains: checks if a key exists in the AVL tree
+//    Returns:  true if key exists, false otherwise
+//    Parameters:
+//       key (const std::string&) - the key to search for
+//----------------------------------------------------------------
 //can just return the result of searchRecursive since it is a bool as well.
 bool AVLTree::contains(const std::string& key) const {
     return searchRecursive(key, root);
 }
+
+//----------------------------------------------------------------
+// get: retrieves the value associated with a key
+//    Returns:  optional containing the value if found, nullopt otherwise
+//    Parameters:
+//       key (const std::string&) - the key to search for
+//----------------------------------------------------------------
 std::optional<size_t> AVLTree::get(const std::string& key) const {
     return getRecursive(key, root);
 }
+
+//----------------------------------------------------------------
+// operator[]: accesses the value associated with a key
+//    Returns:  reference to the value associated with the key
+//    Parameters:
+//       key (const std::string&) - the key to access
+//----------------------------------------------------------------
 size_t& AVLTree::operator[](const std::string& key) {
     return operatorBracketRecursive(key, root);
 }
-vector<std::string> AVLTree::findRange( const std::string& lowKey, const std::string& highKey) const{}
 
+//----------------------------------------------------------------
+//       Not sure how to do this without changing the return type
+//       as doc said to copy method stubs exactly?
+//       but return size_t vector
+//----------------------------------------------------------------
+vector<std::string> AVLTree::findRange( const std::string& lowKey, const std::string& highKey) const {
+}
+
+//----------------------------------------------------------------
+// keys: returns all keys currently in the tree
+//    Returns:  vector of all keys in sorted order
+//    Parameters: none
+//----------------------------------------------------------------
 std::vector<std::string> AVLTree::keys() const {
     std::vector<string> result;
     keysRecursive(root, result);
     return result;
 }
+
+//----------------------------------------------------------------
+// size: returns the number of key-value pairs in the tree
+//    Returns:  number of nodes in the tree (size_t)
+//    Parameters: none
+//----------------------------------------------------------------
 size_t AVLTree::size() const {
     return treeSz;
 }
+
+//----------------------------------------------------------------
+// getHeight: returns the height of the AVL tree
+//    Returns:  height of the tree (size_t)
+//    Parameters: none
+//----------------------------------------------------------------
 size_t AVLTree::getHeight() const {
     return root->height;
 }
+
+//----------------------------------------------------------------
+// AVLTree: copy constructor - creates a deep copy of another tree
+//    Returns:  none (constructor)
+//    Parameters:
+//       other (const AVLTree&) - the tree to copy
+//----------------------------------------------------------------
 AVLTree::AVLTree(const AVLTree& other) {
     root = nullptr;
     treeSz = 0;
@@ -41,9 +108,14 @@ AVLTree::AVLTree(const AVLTree& other) {
     treeSz = other.treeSz;
 
 }
+
+//----------------------------------------------------------------
+// operator=: assignment operator - assigns one tree to another
+//    Returns:  none (void)
+//    Parameters:
+//       other (const AVLTree&) - the tree to copy from
+//----------------------------------------------------------------
 void AVLTree::operator=(const AVLTree& other) {
-
-
     deleteNodes(root);
     root = nullptr;
     treeSz = 0;
@@ -51,21 +123,37 @@ void AVLTree::operator=(const AVLTree& other) {
     root = copyConRecursive(other.root);
     treeSz = other.treeSz;
 }
+
+//----------------------------------------------------------------
+// ~AVLTree: destructor - cleans up tree resources
+//    Returns:  none (destructor)
+//    Parameters: none
+//----------------------------------------------------------------
 AVLTree::~AVLTree() {}
+
+//----------------------------------------------------------------
+// AVLTree: default constructor - creates an empty tree
+//    Returns:  none (constructor)
+//    Parameters: none
+//----------------------------------------------------------------
 AVLTree::AVLTree(): root(nullptr), treeSz(0) {}
 
+//----------------------------------------------------------------
+// operator<<: outputs the tree to an output stream
+//    Returns:  reference to the output stream
+//    Parameters:
+//       os (ostream&) - the output stream
+//       avlTree (const AVLTree&) - the tree to output
+//----------------------------------------------------------------
  std::ostream& operator<<(ostream& os, const AVLTree & avlTree) {
     return os;
 }
 
 
-
-
-
-
 size_t AVLTree::AVLNode::numChildren() const {
     return 0;
 }
+
 
 bool AVLTree::AVLNode::isLeaf() const {
     return false;
@@ -74,6 +162,7 @@ bool AVLTree::AVLNode::isLeaf() const {
 size_t AVLTree::AVLNode::getHeight() const {
     return 0;
 }
+
 
 bool AVLTree::removeNode(AVLNode*& current){
     if (!current) {
@@ -119,14 +208,23 @@ bool AVLTree::removeNode(AVLNode*& current){
     return true;
 }
 
+
 bool AVLTree::remove(AVLNode *&current, KeyType key) {
     return false;
 
 }
 
+
 void AVLTree::balanceNode(AVLNode *&node) {
 }
 
+//----------------------------------------------------------------
+// searchRecursive: recursive helper to search for a key
+//    Returns:  true if key found, false otherwise
+//    Parameters:
+//       key (const string&) - the key to search for
+//       current (AVLNode*) - pointer to current node
+//----------------------------------------------------------------
 bool AVLTree::searchRecursive(const string& key, AVLNode* current ) const{
     //base case
     if (current == nullptr) return false;
@@ -145,6 +243,14 @@ bool AVLTree::searchRecursive(const string& key, AVLNode* current ) const{
     }
 }
 
+//----------------------------------------------------------------
+// insertRecursive: recursive helper to insert a key-value pair
+//    Returns:  true if insertion successful, false if duplicate
+//    Parameters:
+//       current (AVLNode*&) - reference to pointer to current node
+//       key (const string&) - the key to insert
+//       value (size_t) - the value to insert
+//----------------------------------------------------------------
 bool AVLTree::insertRecursive (AVLNode*& current, const string& key, size_t value) {
     // Base case. If node not found in tree insert it
     if (current == nullptr) {
@@ -168,6 +274,14 @@ bool AVLTree::insertRecursive (AVLNode*& current, const string& key, size_t valu
        return insertRecursive(current->right, key, value);
     }
 }
+
+//----------------------------------------------------------------
+// getRecursive: recursive helper to retrieve a value by key
+//    Returns:  optional containing value if found, nullopt otherwise
+//    Parameters:
+//       key (const string&) - the key to search for
+//       current (AVLNode*) - pointer to current node
+//----------------------------------------------------------------
 std::optional<size_t> AVLTree::getRecursive(const string& key, AVLNode* current) const {
 
     //if not in tree just return a null value
@@ -191,6 +305,13 @@ std::optional<size_t> AVLTree::getRecursive(const string& key, AVLNode* current)
     }
 }
 
+//----------------------------------------------------------------
+// keysRecursive: recursive helper to collect all keys in order
+//    Returns:  none (void)
+//    Parameters:
+//       current (AVLNode*) - pointer to current node
+//       result (std::vector<string>&) - vector to store keys
+//----------------------------------------------------------------
 void AVLTree::keysRecursive(AVLNode* current, std::vector<string>& result) const{
 
     //base case
@@ -204,6 +325,13 @@ void AVLTree::keysRecursive(AVLNode* current, std::vector<string>& result) const
     keysRecursive(current->right, result);
 }
 
+//----------------------------------------------------------------
+// operatorBracketRecursive: recursive helper for operator[]
+//    Returns:  reference to value associated with key
+//    Parameters:
+//       key (const string&) - the key to access
+//       current (AVLNode*) - pointer to current node
+//----------------------------------------------------------------
 size_t& AVLTree::operatorBracketRecursive(const string& key, AVLNode* current) {
 
 
@@ -223,6 +351,12 @@ size_t& AVLTree::operatorBracketRecursive(const string& key, AVLNode* current) {
     }
 }
 
+//----------------------------------------------------------------
+// copyConRecursive: recursive helper to deep copy a tree
+//    Returns:  pointer to root of copied subtree
+//    Parameters:
+//       node (AVLNode*) - pointer to node to copy
+//----------------------------------------------------------------
 AVLTree::AVLNode* AVLTree::copyConRecursive(AVLNode* node) {
 
     //base case
@@ -240,6 +374,12 @@ AVLTree::AVLNode* AVLTree::copyConRecursive(AVLNode* node) {
     return newNode;
 }
 
+//----------------------------------------------------------------
+// deleteNodes: recursive helper to delete all nodes in a tree
+//    Returns:  none (void)
+//    Parameters:
+//       node (AVLNode*) - pointer to node to delete
+//----------------------------------------------------------------
 void AVLTree::deleteNodes(AVLNode* node) {
     //Base case
     if (node == nullptr) {
@@ -252,7 +392,4 @@ void AVLTree::deleteNodes(AVLNode* node) {
     //then delete parent
     delete node;
 }
-
-
-
 

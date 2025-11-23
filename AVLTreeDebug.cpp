@@ -15,8 +15,13 @@ int main() {
      AVLTree tree;
      bool insertResult;
      insertResult = tree.insert("F", 'L');
-    insertResult = tree.insert("B", 'L');
-    insertResult = tree.insert("A", 'L');
+    insertResult = tree.insert("B", 'B');
+    insertResult = tree.insert("A", 'C');
+    insertResult = tree.insert("E", 'D');
+    insertResult = tree.insert("T", 'E');
+    insertResult = tree.insert("Z", 'E');
+    insertResult = tree.insert("J", 'L');
+
 
 
     cout << tree["F"] << endl;
@@ -105,7 +110,7 @@ for (const auto& key : keysInTree) {
 //    cout << "Q: " << getResult.has_value() << endl; // print 0
 //    cout << endl;
 //
-//    // findRange
+    // findRange
 //    vector<int> rangeTest = tree.findRange("D", "W");
 //    // 70 68 82 75 77 86
 //    for (auto val: rangeTest) {
